@@ -13,6 +13,7 @@ const { Title } = Typography;
 const Homepage = () => {
   const { data, isFetching } = useGetCryptosQuery(10);
   const globalStats = data?.data?.stats;
+  console.log("!!!!!!1", data);
 
   if (isFetching) return <Loader />;
 
@@ -23,33 +24,39 @@ const Homepage = () => {
       </Title>
       <Row gutter={[32, 32]}>
         <Col span={12}>
-          <Statistic title="Total Cryptocurrencies" value={globalStats.total} />
+          <Statistic
+            title="Total Cryptocurrencies"
+            value={globalStats ? globalStats.total : 0}
+          />
         </Col>
         <Col span={12}>
           <Statistic
             title="Total Exchanges"
-            value={millify(globalStats.totalExchanges)}
+            value={millify(globalStats ? globalStats.totalExchanges : 0)}
           />
         </Col>
         <Col span={12}>
           <Statistic
             title="Total Market Cap:"
-            value={`$${millify(globalStats.totalMarketCap)}`}
+            value={`$${millify(globalStats ? globalStats.totalMarketCap : 0)}`}
           />
         </Col>
         <Col span={12}>
           <Statistic
             title="Total 24h Volume"
-            value={`$${millify(globalStats.total24hVolume)}`}
+            value={`$${millify(globalStats ? globalStats.total24hVolume : 0)}`}
           />
         </Col>
         <Col span={12}>
-          <Statistic title="Total Cryptocurrencies" value={globalStats.total} />
+          <Statistic
+            title="Total Cryptocurrencies"
+            value={globalStats ? globalStats.total : 0}
+          />
         </Col>
         <Col span={12}>
           <Statistic
             title="Total Markets"
-            value={millify(globalStats.totalMarkets)}
+            value={millify(globalStats ? globalStats.totalMarkets : 0)}
           />
         </Col>
       </Row>
